@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info:
+  title: exo1
+  description: Api to test /ping endpoint
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+  - description: Local development server
+paths:
+  /ping:
+    get:
+      summary: Check if the api is online
+      responses:
+        "200":
+          description: Returns 200 OK with the plain text "pong" if the server is running
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "pong"
