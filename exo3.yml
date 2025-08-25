@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: exo3
+  description: Api test about managing task
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+  - description: Local development server
+paths:
+  /tasks:
+    get:
+      summary: Get list of all task
+      responses:
+        "200":
+          description: Return the list of all task with status 200
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Task"
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: Faire les courses
+        completed:
+          type: boolean
+          example: false
