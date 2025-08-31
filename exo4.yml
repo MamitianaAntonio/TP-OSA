@@ -5,8 +5,37 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:8080
-  - description: Local development server
+    description: Local development server
 paths:
+  /products:
+    get:
+      summary: Search for products
+      operationId: searchProducts
+      parameters:
+        - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/q"
+      responses:
+        "200":
+          description: List of the products matching the search criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+              examples:
+                multipleProducts:
+                  summary: Multiple products found
+                  value:
+                    - name: white chocolate
+                      expiration_datetime: 2025-12-31T23:59:00Z
+                      price: 4.99
+                    - name: Orange juice
+                      expiration_datetime: 2024-06-30T12:00:00Z
+                      price: 2.5
+                emptyList:
+                  summary: No products found
+                  value: []
 components:
   schemas:
     Product:
