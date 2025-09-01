@@ -27,7 +27,7 @@ paths:
                 multipleProducts:
                   summary: Multiple products found
                   value:
-                    - name: white chocolate
+                    - name: black chocolate
                       expiration_datetime: 2025-12-31T23:59:00Z
                       price: 4.99
                     - name: Orange juice
