@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: exo6
+  description: Best practice for OSA
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: localhost development
+paths:
+components:
+  schemas:
+    UserProfile:
+      type: object
+      properties:
+        identifier:
+          type: string
+        personalInfo:
+          $ref: "#/components/schemas/PersonalInfo"
+        address:
+          $ref: "#/components/schemas/Address"
+        preferences:
+          $ref: "#/components/schemas/Preferences"
+      required:
+        - identifier
+        - personalInfo
+        - address
+        - preferences
+    CreateUserProfile:
+      type: object
+      properties:
+        personalInfo:
+          $ref: "#/components/schemas/PersonalInfo"
+        address:
+          $ref: "#/components/schemas/Address"
+        preferences:
+          $ref: "#/components/schemas/Preferences"
+      required:
+        - personalInfo
+        - address
+        - preferences
