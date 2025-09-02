@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: exo6
-  description: Best practice for OSA
+  description: best practice for osa
   version: 1.0.0
 servers:
   - url: http://localhost:8080
@@ -18,22 +18,22 @@ paths:
           required: true
       responses:
         "200":
-          description: User finds
+          description: user finds
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserProfile"
+                $ref: "#/components/schemas/userprofile"
   /users:
     post:
       summary: create a many users
-      requestbody:
+      requestBody:
         required: true
         content:
           application/json:
             schema:
               type: array
               items:
-                $ref: "#/components/schemas/CreateUserProfile"
+                $ref: "#/components/schemas/createuserprofile"
       responses:
         "201":
           description: users was created
@@ -42,39 +42,107 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/UserProfile"
+                  $ref: "#/components/schemas/userprofile"
+
+  /users/{id}/personalinfo:
+    put:
+      summary: update personal information
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/personalinfo"
+      responses:
+        "200":
+          description: personal information wa updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userprofile"
+
+  /users/{id}/address:
+    put:
+      summary: update address
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/address"
+      responses:
+        "200":
+          description: address was updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userprofile"
+  /users/{id}/preferences:
+    put:
+      summary: update preferences
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/preferences"
+      responses:
+        "200":
+          description: preferences was updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userprofile"
 components:
   schemas:
-    UserProfile:
+    userprofile:
       type: object
       properties:
         identifier:
           type: string
-        personalInfo:
-          $ref: "#/components/schemas/PersonalInfo"
+        personalinfo:
+          $ref: "#/components/schemas/personalinfo"
         address:
-          $ref: "#/components/schemas/Address"
+          $ref: "#/components/schemas/address"
         preferences:
-          $ref: "#/components/schemas/Preferences"
+          $ref: "#/components/schemas/preferences"
       required:
         - identifier
-        - personalInfo
+        - personalinfo
         - address
         - preferences
-    CreateUserProfile:
+    createuserprofile:
       type: object
       properties:
-        personalInfo:
-          $ref: "#/components/schemas/PersonalInfo"
+        personalinfo:
+          $ref: "#/components/schemas/personalinfo"
         address:
-          $ref: "#/components/schemas/Address"
+          $ref: "#/components/schemas/address"
         preferences:
-          $ref: "#/components/schemas/Preferences"
+          $ref: "#/components/schemas/preferences"
       required:
-        - personalInfo
+        - personalinfo
         - address
         - preferences
-    PersonalInfo:
+    personalinfo:
       type: object
       properties:
         first_name:
@@ -91,7 +159,7 @@ components:
         - first_name
         - last_name
         - email
-    Address:
+    address:
       type: object
       properties:
         address_street:
@@ -107,7 +175,7 @@ components:
         - address_city
         - address_country
         - address_postal_code
-    Preferences:
+    preferences:
       type: object
       properties:
         needs_newsletter:
