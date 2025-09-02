@@ -7,6 +7,23 @@ servers:
   - url: http://localhost:8080
     description: localhost development
 paths:
+  /users/{id}:
+    get:
+      summary: get an user
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: User finds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+
 components:
   schemas:
     UserProfile:
@@ -38,7 +55,6 @@ components:
         - personalInfo
         - address
         - preferences
-
     PersonalInfo:
       type: object
       properties:
@@ -56,7 +72,6 @@ components:
         - first_name
         - last_name
         - email
-
     Address:
       type: object
       properties:
@@ -73,7 +88,6 @@ components:
         - address_city
         - address_country
         - address_postal_code
-
     Preferences:
       type: object
       properties:
